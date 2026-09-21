@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Members — LDRMS</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="members.html"><i class="fas fa-users"></i> Members</a></li>
+      <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+      <li><a href="../login.html" class="btn-login">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <h1><i class="fas fa-users"></i> Manage Members</h1>
+    <p>View and manage all library members</p>
+  </div>
+
+  <!-- SEARCH + ADD -->
+  <div class="action-bar">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search member..." onkeyup="searchMembers()" />
+    </div>
+    <button class="btn-add" onclick="toggleForm()">
+      <i class="fas fa-plus"></i> Add Member
+    </button>
+  </div>
+
+  <!-- ADD MEMBER FORM -->
+  <div class="form-box" id="addForm" style="display:none; margin: 0 40px 20px;">
+    <h2><i class="fas fa-user-plus"></i> Add New Member</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="newName" placeholder="Enter name" />
+      </div>
+      <div class="form-group">
+        <label>Roll Number</label>
+        <input type="text" id="newRoll" placeholder="Enter roll no" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="newEmail" placeholder="Enter email" />
+      </div>
+      <div class="form-group">
+        <label>Branch</label>
+        <select id="newBranch">
+          <option>CSE</option>
+          <option>ECE</option>
+          <option>ME</option>
+          <option>CE</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-submit" onclick="addMember()">
+      <i class="fas fa-save"></i> Save Member
+    </button>
+    <p id="success-msg" class="success-msg"></p>
+  </div>
+
+  <!-- MEMBERS TABLE -->
+  <div class="section-box">
+    <h2><i class="fas fa-list"></i> All Members</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Roll No</th>
+          <th>Email</th>
+          <th>Branch</th>
+          <th>Books Issued</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="membersBody">
+        <tr>
+          <td>1</td>
+          <td>Rahul Sharma</td>
+          <td>2201010001</td>
+          <td>rahul@gla.ac.in</td>
+          <td>CSE</td>
+          <td>3</td>
+          <td><span class="badge green">Active</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Priya Singh</td>
+          <td>2201010002</td>
+          <td>priya@gla.ac.in</td>
+          <td>CSE</td>
+          <td>1</td>
+          <td><span class="badge green">Active</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Amit Kumar</td>
+          <td>2201010003</td>
+          <td>amit@gla.ac.in</td>
+          <td>ECE</td>
+          <td>2</td>
+          <td><span class="badge red">Overdue</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Neha Gupta</td>
+          <td>2201010004</td>
+          <td>neha@gla.ac.in</td>
+          <td>ME</td>
+          <td>1</td>
+          <td><span class="badge green">Active</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleForm() {
+      const form = document.getElementById('addForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function addMember() {
+      const name   = document.getElementById('newName').value.trim();
+      const roll   = document.getElementById('newRoll').value.trim();
+      const email  = document.getElementById('newEmail').value.trim();
+      const branch = document.getElementById('newBranch').value;
+
+      if (!name || !roll || !email) {
+        alert('Please fill all fields!');
+        return;
+      }
+
+      const tbody = document.getElementById('membersBody');
+      const rows  = tbody.querySelectorAll('tr').length + 1;
+
+      tbody.innerHTML += `<tr>
+        <td>${rows}</td>
+        <td>${name}</td>
+        <td>${roll}</td>
+        <td>${email}</td>
+        <td>${branch}</td>
+        <td>0</td>
+        <td><span class="badge green">Active</span></td>
+      </tr>`;
+
+      document.getElementById('success-msg').textContent = 'Member added successfully!';
+      document.getElementById('newName').value  = '';
+      document.getElementById('newRoll').value  = '';
+      document.getElementById('newEmail').value = '';
+
+      setTimeout(() => {
+        document.getElementById('success-msg').textContent = '';
+      }, 3000);
+    }
+
+    function searchMembers() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const rows  = document.querySelectorAll('#membersBody tr');
+      rows.forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(input) ? '' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
