@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login — LDRMS</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body class="login-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="login.html" class="btn-login active">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- LOGIN SECTION -->
+  <section class="login-section">
+
+    <div class="login-left">
+      <i class="fas fa-book-open login-icon"></i>
+      <h2>Welcome to LDRMS</h2>
+      <p>Library & Digital Resource Management System</p>
+      <p>GLA University, Mathura</p>
+    </div>
+
+    <div class="login-box">
+      <h2>Login to Your Account</h2>
+      <p class="login-sub">Select your role and enter your credentials</p>
+
+      <!-- ROLE SELECT -->
+      <div class="role-select">
+        <button class="role-btn active" onclick="selectRole('student', this)">
+          <i class="fas fa-user-graduate"></i> Student
+        </button>
+        <button class="role-btn" onclick="selectRole('librarian', this)">
+          <i class="fas fa-user-tie"></i> Librarian
+        </button>
+        <button class="role-btn" onclick="selectRole('admin', this)">
+          <i class="fas fa-user-shield"></i> Admin
+        </button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="email" placeholder="Enter your email" />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <div class="password-wrap">
+          <input type="password" id="password" placeholder="Enter your password" />
+          <i class="fas fa-eye" id="toggle-eye" onclick="togglePassword()"></i>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button class="btn-submit" onclick="handleLogin()">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </button>
+
+      <p id="error-msg" class="error-msg"></p>
+
+      <p class="register-link">
+        New user? <a href="register.html">Register Here</a>
+      </p>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+  <script>
+    let selectedRole = 'student';
+
+    function selectRole(role, btn) {
+      selectedRole = role;
+      document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function togglePassword() {
+      const pwd = document.getElementById('password');
+      const eye = document.getElementById('toggle-eye');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        eye.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        pwd.type = 'password';
+        eye.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    }
+
+    function handleLogin() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+
+      if (!email || !password) {
+        errorMsg.textContent = 'Please enter email and password!';
+        return;
+      }
+
+      // Dummy login — backend se connect hoga baad mein
+      if (selectedRole === 'student') {
+        window.location.href = 'student/student.html';
+      } else if (selectedRole === 'librarian') {
+        window.location.href = 'librarian/librarian.html';
+      } else if (selectedRole === 'admin') {
+        window.location.href = 'admin/admin.html';
+      }
+    }
+  </script>
+
+</body>
+</html>
