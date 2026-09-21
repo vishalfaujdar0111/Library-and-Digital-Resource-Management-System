@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reports — LDRMS</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="members.html"><i class="fas fa-users"></i> Members</a></li>
+      <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+      <li><a href="../login.html" class="btn-login">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <h1><i class="fas fa-chart-bar"></i> Reports</h1>
+    <p>Library statistics and summary</p>
+  </div>
+
+  <!-- SUMMARY CARDS -->
+  <div class="stats-grid">
+    <div class="stat-card blue">
+      <i class="fas fa-book"></i>
+      <div><h3>245</h3><p>Total Books</p></div>
+    </div>
+    <div class="stat-card green">
+      <i class="fas fa-users"></i>
+      <div><h3>320</h3><p>Total Members</p></div>
+    </div>
+    <div class="stat-card orange">
+      <i class="fas fa-exchange-alt"></i>
+      <div><h3>156</h3><p>Total Issued</p></div>
+    </div>
+    <div class="stat-card red">
+      <i class="fas fa-rupee-sign"></i>
+      <div><h3>₹1,250</h3><p>Total Fine</p></div>
+    </div>
+  </div>
+
+  <!-- POPULAR BOOKS -->
+  <div class="section-box">
+    <h2><i class="fas fa-fire"></i> Most Popular Books</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Book Name</th>
+          <th>Author</th>
+          <th>Category</th>
+          <th>Times Issued</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Let Us C</td>
+          <td>Yashavant Kanetkar</td>
+          <td>Programming</td>
+          <td>42</td>
+          <td><span class="badge green">Available</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Data Structures</td>
+          <td>Mark Allen Weiss</td>
+          <td>Programming</td>
+          <td>38</td>
+          <td><span class="badge green">Available</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Operating System</td>
+          <td>Galvin Silberschatz</td>
+          <td>OS</td>
+          <td>31</td>
+          <td><span class="badge red">Not Available</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>HTML & CSS</td>
+          <td>Jon Duckett</td>
+          <td>Web Dev</td>
+          <td>28</td>
+          <td><span class="badge red">Not Available</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Database Management</td>
+          <td>Ramez Elmasri</td>
+          <td>Database</td>
+          <td>25</td>
+          <td><span class="badge green">Available</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FINE REPORT -->
+  <div class="section-box">
+    <h2><i class="fas fa-rupee-sign"></i> Fine Report</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Roll No</th>
+          <th>Book Name</th>
+          <th>Days Late</th>
+          <th>Fine Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Amit Kumar</td>
+          <td>2201010003</td>
+          <td>Data Structures</td>
+          <td>15 days</td>
+          <td>₹75</td>
+          <td><span class="badge red">Pending</span></td>
+        </tr>
+        <tr>
+          <td>Rahul Sharma</td>
+          <td>2201010001</td>
+          <td>Let Us C</td>
+          <td>5 days</td>
+          <td>₹25</td>
+          <td><span class="badge green">Paid</span></td>
+        </tr>
+        <tr>
+          <td>Ravi Verma</td>
+          <td>2201010005</td>
+          <td>Computer Networks</td>
+          <td>10 days</td>
+          <td>₹50</td>
+          <td><span class="badge red">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MONTHLY SUMMARY -->
+  <div class="section-box">
+    <h2><i class="fas fa-calendar-alt"></i> Monthly Summary</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Books Issued</th>
+          <th>Books Returned</th>
+          <th>New Members</th>
+          <th>Fine Collected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>July 2025</td>
+          <td>45</td>
+          <td>42</td>
+          <td>15</td>
+          <td>₹200</td>
+        </tr>
+        <tr>
+          <td>August 2025</td>
+          <td>52</td>
+          <td>50</td>
+          <td>20</td>
+          <td>₹350</td>
+        </tr>
+        <tr>
+          <td>September 2025</td>
+          <td>38</td>
+          <td>30</td>
+          <td>12</td>
+          <td>₹150</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+</body>
+</html>
