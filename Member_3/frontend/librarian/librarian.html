@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Librarian Dashboard — LDRMS</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="librarian.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="librarian.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="issue.html"><i class="fas fa-arrow-circle-right"></i> Issue Book</a></li>
+      <li><a href="return.html"><i class="fas fa-arrow-circle-left"></i> Return Book</a></li>
+      <li><a href="../login.html" class="btn-login">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <div>
+      <h1>Welcome, Librarian! 👋</h1>
+      <p>Manage books, issue and return transactions</p>
+    </div>
+    <div class="date-box">
+      <i class="fas fa-calendar-alt"></i>
+      <span id="current-date"></span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card blue">
+      <i class="fas fa-book"></i>
+      <div>
+        <h3>245</h3>
+        <p>Total Books</p>
+      </div>
+    </div>
+    <div class="stat-card orange">
+      <i class="fas fa-exchange-alt"></i>
+      <div>
+        <h3>18</h3>
+        <p>Books Issued</p>
+      </div>
+    </div>
+    <div class="stat-card green">
+      <i class="fas fa-check-circle"></i>
+      <div>
+        <h3>12</h3>
+        <p>Returned Today</p>
+      </div>
+    </div>
+    <div class="stat-card red">
+      <i class="fas fa-exclamation-circle"></i>
+      <div>
+        <h3>5</h3>
+        <p>Overdue Books</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="section-box">
+    <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+    <div class="quick-actions">
+      <a href="issue.html" class="action-btn blue">
+        <i class="fas fa-arrow-circle-right"></i>
+        <span>Issue Book</span>
+      </a>
+      <a href="return.html" class="action-btn green">
+        <i class="fas fa-arrow-circle-left"></i>
+        <span>Return Book</span>
+      </a>
+      <a href="#" class="action-btn orange">
+        <i class="fas fa-plus-circle"></i>
+        <span>Add New Book</span>
+      </a>
+      <a href="#" class="action-btn red">
+        <i class="fas fa-users"></i>
+        <span>View Members</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- RECENT TRANSACTIONS -->
+  <div class="section-box">
+    <h2><i class="fas fa-history"></i> Recent Transactions</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Roll No</th>
+          <th>Book Name</th>
+          <th>Issue Date</th>
+          <th>Return Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rahul Sharma</td>
+          <td>2201010001</td>
+          <td>Let Us C</td>
+          <td>01 Sep 2025</td>
+          <td>15 Sep 2025</td>
+          <td><span class="badge green">Returned</span></td>
+        </tr>
+        <tr>
+          <td>Priya Singh</td>
+          <td>2201010002</td>
+          <td>HTML & CSS</td>
+          <td>10 Sep 2025</td>
+          <td>24 Sep 2025</td>
+          <td><span class="badge orange">Due Soon</span></td>
+        </tr>
+        <tr>
+          <td>Amit Kumar</td>
+          <td>2201010003</td>
+          <td>Data Structures</td>
+          <td>05 Sep 2025</td>
+          <td>19 Sep 2025</td>
+          <td><span class="badge red">Overdue</span></td>
+        </tr>
+        <tr>
+          <td>Neha Gupta</td>
+          <td>2201010004</td>
+          <td>Operating System</td>
+          <td>12 Sep 2025</td>
+          <td>26 Sep 2025</td>
+          <td><span class="badge blue">Issued</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+  <script>
+    const date = new Date();
+    document.getElementById('current-date').textContent = date.toDateString();
+  </script>
+
+</body>
+</html>
