@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Issue Book — LDRMS</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="librarian.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="librarian.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="issue.html"><i class="fas fa-arrow-circle-right"></i> Issue Book</a></li>
+      <li><a href="return.html"><i class="fas fa-arrow-circle-left"></i> Return Book</a></li>
+      <li><a href="../login.html" class="btn-login">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <h1><i class="fas fa-arrow-circle-right"></i> Issue Book</h1>
+    <p>Issue a book to a student member</p>
+  </div>
+
+  <!-- ISSUE FORM -->
+  <div class="form-container">
+    <div class="form-box">
+      <h2><i class="fas fa-book"></i> Issue Book Form</h2>
+
+      <div class="form-group">
+        <label><i class="fas fa-id-card"></i> Student Roll Number</label>
+        <input type="text" id="rollNo" placeholder="Enter student roll number" />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Student Name</label>
+        <input type="text" id="studentName" placeholder="Student name" readonly />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-book"></i> Book Name</label>
+        <select id="bookName">
+          <option value="">-- Select Book --</option>
+          <option>Let Us C</option>
+          <option>HTML & CSS</option>
+          <option>Data Structures</option>
+          <option>Operating System</option>
+          <option>Database Management</option>
+          <option>Computer Networks</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-calendar"></i> Issue Date</label>
+        <input type="date" id="issueDate" />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-calendar-check"></i> Return Date</label>
+        <input type="date" id="returnDate" />
+      </div>
+
+      <button class="btn-submit" onclick="issueBook()">
+        <i class="fas fa-arrow-circle-right"></i> Issue Book
+      </button>
+
+      <p id="success-msg" class="success-msg"></p>
+      <p id="error-msg" class="error-msg"></p>
+    </div>
+
+    <!-- ISSUED TODAY -->
+    <div class="section-box" style="margin-top: 30px;">
+      <h2><i class="fas fa-list"></i> Issued Today</h2>
+      <table class="data-table" id="issuedTable">
+        <thead>
+          <tr>
+            <th>Roll No</th>
+            <th>Student Name</th>
+            <th>Book Name</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+          </tr>
+        </thead>
+        <tbody id="issuedBody">
+          <tr>
+            <td>2201010001</td>
+            <td>Rahul Sharma</td>
+            <td>Let Us C</td>
+            <td>20 Sep 2025</td>
+            <td>04 Oct 2025</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+  <script>
+    // Set today's date
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('issueDate').value = today;
+
+    // Set return date 14 days later
+    const returnDate = new Date();
+    returnDate.setDate(returnDate.getDate() + 14);
+    document.getElementById('returnDate').value = returnDate.toISOString().split('T')[0];
+
+    function issueBook() {
+      const rollNo     = document.getElementById('rollNo').value.trim();
+      const bookName   = document.getElementById('bookName').value;
+      const issueDate  = document.getElementById('issueDate').value;
+      const returnDate = document.getElementById('returnDate').value;
+      const successMsg = document.getElementById('success-msg');
+      const errorMsg   = document.getElementById('error-msg');
+
+      if (!rollNo || !bookName) {
+        errorMsg.textContent = 'Please fill all fields!';
+        successMsg.textContent = '';
+        return;
+      }
+
+      // Add to table
+      const tbody = document.getElementById('issuedBody');
+      const newRow = `<tr>
+        <td>${rollNo}</td>
+        <td>Student</td>
+        <td>${bookName}</td>
+        <td>${issueDate}</td>
+        <td>${returnDate}</td>
+      </tr>`;
+      tbody.innerHTML += newRow;
+
+      successMsg.textContent = 'Book issued successfully!';
+      errorMsg.textContent = '';
+
+      // Clear form
+      document.getElementById('rollNo').value = '';
+      document.getElementById('bookName').value = '';
+
+      setTimeout(() => successMsg.textContent = '', 3000);
+    }
+  </script>
+
+</body>
+</html>

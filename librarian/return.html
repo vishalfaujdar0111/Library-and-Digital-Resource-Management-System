@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Return Book — LDRMS</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="librarian.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="librarian.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="issue.html"><i class="fas fa-arrow-circle-right"></i> Issue Book</a></li>
+      <li><a href="return.html"><i class="fas fa-arrow-circle-left"></i> Return Book</a></li>
+      <li><a href="../login.html" class="btn-login">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <h1><i class="fas fa-arrow-circle-left"></i> Return Book</h1>
+    <p>Process book return and calculate fine</p>
+  </div>
+
+  <!-- RETURN FORM -->
+  <div class="form-container">
+    <div class="form-box">
+      <h2><i class="fas fa-undo"></i> Return Book Form</h2>
+
+      <div class="form-group">
+        <label><i class="fas fa-id-card"></i> Student Roll Number</label>
+        <input type="text" id="rollNo" placeholder="Enter student roll number" />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-book"></i> Book Name</label>
+        <select id="bookName">
+          <option value="">-- Select Book --</option>
+          <option>Let Us C</option>
+          <option>HTML & CSS</option>
+          <option>Data Structures</option>
+          <option>Operating System</option>
+          <option>Database Management</option>
+          <option>Computer Networks</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-calendar"></i> Issue Date</label>
+        <input type="date" id="issueDate" />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-calendar-check"></i> Return Date (Due)</label>
+        <input type="date" id="dueDate" />
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-calendar-day"></i> Actual Return Date</label>
+        <input type="date" id="actualReturn" />
+      </div>
+
+      <!-- FINE BOX -->
+      <div class="fine-box" id="fineBox" style="display:none">
+        <i class="fas fa-rupee-sign"></i>
+        <div>
+          <p>Fine Amount</p>
+          <h3 id="fineAmount">₹0</h3>
+        </div>
+      </div>
+
+      <button class="btn-calculate" onclick="calculateFine()">
+        <i class="fas fa-calculator"></i> Calculate Fine
+      </button>
+
+      <button class="btn-submit" onclick="returnBook()" style="margin-top:10px">
+        <i class="fas fa-check-circle"></i> Confirm Return
+      </button>
+
+      <p id="success-msg" class="success-msg"></p>
+      <p id="error-msg" class="error-msg"></p>
+    </div>
+
+    <!-- RETURNED TODAY -->
+    <div class="section-box" style="margin-top: 30px;">
+      <h2><i class="fas fa-list"></i> Returned Today</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Roll No</th>
+            <th>Book Name</th>
+            <th>Due Date</th>
+            <th>Return Date</th>
+            <th>Fine</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="returnedBody">
+          <tr>
+            <td>2201010001</td>
+            <td>Let Us C</td>
+            <td>15 Sep 2025</td>
+            <td>20 Sep 2025</td>
+            <td>₹25</td>
+            <td><span class="badge green">Returned</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+  <script>
+    // Set today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('actualReturn').value = today;
+
+    function calculateFine() {
+      const dueDate    = document.getElementById('dueDate').value;
+      const actualDate = document.getElementById('actualReturn').value;
+      const fineBox    = document.getElementById('fineBox');
+      const fineAmount = document.getElementById('fineAmount');
+      const errorMsg   = document.getElementById('error-msg');
+
+      if (!dueDate || !actualDate) {
+        errorMsg.textContent = 'Please enter due date and return date!';
+        return;
+      }
+
+      errorMsg.textContent = '';
+
+      const due    = new Date(dueDate);
+      const actual = new Date(actualDate);
+      const diff   = Math.floor((actual - due) / (1000 * 60 * 60 * 24));
+
+      fineBox.style.display = 'flex';
+
+      if (diff > 0) {
+        fineAmount.textContent = `₹${diff * 5}`;
+        fineAmount.style.color = '#E74C3C';
+      } else {
+        fineAmount.textContent = '₹0 — No Fine!';
+        fineAmount.style.color = '#27AE60';
+      }
+    }
+
+    function returnBook() {
+      const rollNo   = document.getElementById('rollNo').value.trim();
+      const bookName = document.getElementById('bookName').value;
+      const successMsg = document.getElementById('success-msg');
+      const errorMsg   = document.getElementById('error-msg');
+
+      if (!rollNo || !bookName) {
+        errorMsg.textContent = 'Please fill all fields!';
+        return;
+      }
+
+      const fine = document.getElementById('fineAmount').textContent || '₹0';
+      const today = new Date().toLocaleDateString('en-IN');
+      const due   = document.getElementById('dueDate').value;
+
+      const tbody = document.getElementById('returnedBody');
+      tbody.innerHTML += `<tr>
+        <td>${rollNo}</td>
+        <td>${bookName}</td>
+        <td>${due}</td>
+        <td>${today}</td>
+        <td>${fine}</td>
+        <td><span class="badge green">Returned</span></td>
+      </tr>`;
+
+      successMsg.textContent = 'Book returned successfully!';
+      errorMsg.textContent = '';
+
+      document.getElementById('rollNo').value = '';
+      document.getElementById('bookName').value = '';
+      document.getElementById('fineBox').style.display = 'none';
+
+      setTimeout(() => successMsg.textContent = '', 3000);
+    }
+  </script>
+
+</body>
+</html>

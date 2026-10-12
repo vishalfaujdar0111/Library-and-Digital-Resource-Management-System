@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard — LDRMS</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="student.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="student.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="search.html"><i class="fas fa-search"></i> Search Books</a></li>
+      <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+      <li><a href="../login.html" class="btn-login">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- WELCOME -->
+  <div class="dashboard-header">
+    <div>
+      <h1>Welcome, Student! 👋</h1>
+      <p>GLA University Library — Digital Resource Management System</p>
+    </div>
+    <div class="date-box">
+      <i class="fas fa-calendar-alt"></i>
+      <span id="current-date"></span>
+    </div>
+  </div>
+
+  <!-- STATS CARDS -->
+  <div class="stats-grid">
+    <div class="stat-card blue">
+      <i class="fas fa-book"></i>
+      <div>
+        <h3>2</h3>
+        <p>Books Issued</p>
+      </div>
+    </div>
+    <div class="stat-card orange">
+      <i class="fas fa-clock"></i>
+      <div>
+        <h3>1</h3>
+        <p>Due Soon</p>
+      </div>
+    </div>
+    <div class="stat-card red">
+      <i class="fas fa-rupee-sign"></i>
+      <div>
+        <h3>₹0</h3>
+        <p>Fine Pending</p>
+      </div>
+    </div>
+    <div class="stat-card green">
+      <i class="fas fa-file-pdf"></i>
+      <div>
+        <h3>10+</h3>
+        <p>Digital Resources</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISSUED BOOKS TABLE -->
+  <div class="section-box">
+    <h2><i class="fas fa-book-open"></i> My Issued Books</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Book Name</th>
+          <th>Author</th>
+          <th>Issue Date</th>
+          <th>Return Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Let Us C</td>
+          <td>Yashavant Kanetkar</td>
+          <td>01 Sep 2025</td>
+          <td>15 Sep 2025</td>
+          <td><span class="badge green">Returned</span></td>
+        </tr>
+        <tr>
+          <td>HTML & CSS</td>
+          <td>Jon Duckett</td>
+          <td>10 Sep 2025</td>
+          <td>24 Sep 2025</td>
+          <td><span class="badge orange">Due Soon</span></td>
+        </tr>
+        <tr>
+          <td>Database Management</td>
+          <td>Ramez Elmasri</td>
+          <td>15 Sep 2025</td>
+          <td>30 Sep 2025</td>
+          <td><span class="badge blue">Issued</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DIGITAL RESOURCES -->
+  <div class="section-box">
+    <h2><i class="fas fa-file-pdf"></i> Digital Resources</h2>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <i class="fas fa-file-pdf"></i>
+        <h4>Data Structures Notes</h4>
+        <p>PDF • 2.4 MB</p>
+        <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="resource-card">
+        <i class="fas fa-file-pdf"></i>
+        <h4>Operating System eBook</h4>
+        <p>PDF • 5.1 MB</p>
+        <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="resource-card">
+        <i class="fas fa-file-pdf"></i>
+        <h4>DBMS Lab Manual</h4>
+        <p>PDF • 1.8 MB</p>
+        <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+  <script>
+    // Show current date
+    const date = new Date();
+    document.getElementById('current-date').textContent = date.toDateString();
+  </script>
+
+</body>
+</html>
