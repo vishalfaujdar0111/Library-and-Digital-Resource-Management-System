@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="admin.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
+<script src="admin.js"></script>
 <body>
 
   <!-- NAVBAR -->
@@ -138,54 +139,6 @@
     </div>
   </footer>
 
-  <script>
-    function toggleForm() {
-      const form = document.getElementById('addForm');
-      form.style.display = form.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function addMember() {
-      const name   = document.getElementById('newName').value.trim();
-      const roll   = document.getElementById('newRoll').value.trim();
-      const email  = document.getElementById('newEmail').value.trim();
-      const branch = document.getElementById('newBranch').value;
-
-      if (!name || !roll || !email) {
-        alert('Please fill all fields!');
-        return;
-      }
-
-      const tbody = document.getElementById('membersBody');
-      const rows  = tbody.querySelectorAll('tr').length + 1;
-
-      tbody.innerHTML += `<tr>
-        <td>${rows}</td>
-        <td>${name}</td>
-        <td>${roll}</td>
-        <td>${email}</td>
-        <td>${branch}</td>
-        <td>0</td>
-        <td><span class="badge green">Active</span></td>
-      </tr>`;
-
-      document.getElementById('success-msg').textContent = 'Member added successfully!';
-      document.getElementById('newName').value  = '';
-      document.getElementById('newRoll').value  = '';
-      document.getElementById('newEmail').value = '';
-
-      setTimeout(() => {
-        document.getElementById('success-msg').textContent = '';
-      }, 3000);
-    }
-
-    function searchMembers() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const rows  = document.querySelectorAll('#membersBody tr');
-      rows.forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(input) ? '' : 'none';
-      });
-    }
-  </script>
 
 </body>
 </html>
