@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
+<script src="js/main.js"></script>
 <body class="login-page">
 
   <!-- NAVBAR -->
@@ -86,48 +87,6 @@
       <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
     </div>
   </footer>
-
-  <script>
-    let selectedRole = 'student';
-
-    function selectRole(role, btn) {
-      selectedRole = role;
-      document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    function togglePassword() {
-      const pwd = document.getElementById('password');
-      const eye = document.getElementById('toggle-eye');
-      if (pwd.type === 'password') {
-        pwd.type = 'text';
-        eye.classList.replace('fa-eye', 'fa-eye-slash');
-      } else {
-        pwd.type = 'password';
-        eye.classList.replace('fa-eye-slash', 'fa-eye');
-      }
-    }
-
-    function handleLogin() {
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const errorMsg = document.getElementById('error-msg');
-
-      if (!email || !password) {
-        errorMsg.textContent = 'Please enter email and password!';
-        return;
-      }
-
-      // Dummy login — backend se connect hoga baad mein
-      if (selectedRole === 'student') {
-        window.location.href = 'student/student.html';
-      } else if (selectedRole === 'librarian') {
-        window.location.href = 'librarian/librarian.html';
-      } else if (selectedRole === 'admin') {
-        window.location.href = 'admin/admin.html';
-      }
-    }
-  </script>
 
 </body>
 </html>
