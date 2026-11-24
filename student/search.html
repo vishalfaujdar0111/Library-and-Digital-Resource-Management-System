@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="student.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
+<script src="student.js"></script>
 <body>
 
   <!-- NAVBAR -->
@@ -111,17 +112,6 @@
       <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
     </div>
   </footer>
-
-  <script>
-    function searchBooks() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const rows = document.querySelectorAll('#booksBody tr');
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(input) ? '' : 'none';
-      });
-    }
-  </script>
 
 </body>
 </html>
