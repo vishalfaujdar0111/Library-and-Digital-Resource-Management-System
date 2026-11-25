@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,51 +110,8 @@
     </div>
   </footer>
 
-  <script>
-    // Set today's date
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('issueDate').value = today;
-
-    // Set return date 14 days later
-    const returnDate = new Date();
-    returnDate.setDate(returnDate.getDate() + 14);
-    document.getElementById('returnDate').value = returnDate.toISOString().split('T')[0];
-
-    function issueBook() {
-      const rollNo     = document.getElementById('rollNo').value.trim();
-      const bookName   = document.getElementById('bookName').value;
-      const issueDate  = document.getElementById('issueDate').value;
-      const returnDate = document.getElementById('returnDate').value;
-      const successMsg = document.getElementById('success-msg');
-      const errorMsg   = document.getElementById('error-msg');
-
-      if (!rollNo || !bookName) {
-        errorMsg.textContent = 'Please fill all fields!';
-        successMsg.textContent = '';
-        return;
-      }
-
-      // Add to table
-      const tbody = document.getElementById('issuedBody');
-      const newRow = `<tr>
-        <td>${rollNo}</td>
-        <td>Student</td>
-        <td>${bookName}</td>
-        <td>${issueDate}</td>
-        <td>${returnDate}</td>
-      </tr>`;
-      tbody.innerHTML += newRow;
-
-      successMsg.textContent = 'Book issued successfully!';
-      errorMsg.textContent = '';
-
-      // Clear form
-      document.getElementById('rollNo').value = '';
-      document.getElementById('bookName').value = '';
-
-      setTimeout(() => successMsg.textContent = '', 3000);
-    }
-  </script>
+  <!-- External JavaScript -->
+  <script src="librarian.js"></script>
 
 </body>
 </html>
