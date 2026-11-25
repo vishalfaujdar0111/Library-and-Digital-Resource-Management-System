@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register — LDRMS</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/register.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body class="login-page">
+
+<!-- CSS -->
+<link rel="stylesheet" href="CSS/register.css">
+
+<!-- JavaScript -->
+<script src="js/register.js"></script>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-book-open"></i>
+      <span>LDRMS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="login.html" class="btn-login">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- REGISTER SECTION -->
+  <section class="register-section">
+
+    <!-- LEFT PANEL -->
+    <div class="login-left">
+      <i class="fas fa-user-plus login-icon"></i>
+      <h2>Join LDRMS Today</h2>
+      <p>Library & Digital Resource Management System</p>
+      <ul class="benefits">
+        <li><i class="fas fa-check-circle"></i> Search books from anywhere</li>
+        <li><i class="fas fa-check-circle"></i> Check real-time availability</li>
+        <li><i class="fas fa-check-circle"></i> Access e-books and PDFs</li>
+        <li><i class="fas fa-check-circle"></i> Get due date reminders</li>
+      </ul>
+    </div>
+
+    <!-- REGISTER BOX -->
+    <div class="register-box">
+      <h2>Create Your Account</h2>
+      <p class="login-sub">Select your role and fill in your details</p>
+
+      <!-- ROLE SELECT -->
+      <div class="role-select">
+        <button type="button" class="role-btn active" onclick="selectRegRole('student', this)">
+          <i class="fas fa-user-graduate"></i> Student
+        </button>
+        <button type="button" class="role-btn" onclick="selectRegRole('librarian', this)">
+          <i class="fas fa-user-tie"></i> Librarian
+        </button>
+      </div>
+
+      <!-- ROW 1 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your full name" />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-id-card"></i> <span id="idLabel">Roll Number</span></label>
+          <input type="text" id="idNumber" placeholder="Enter your roll number" />
+        </div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-envelope"></i> Email</label>
+          <input type="email" id="email" placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-phone"></i> Phone</label>
+          <input type="text" id="phone" placeholder="10 digit mobile number" maxlength="10" />
+        </div>
+      </div>
+
+      <!-- BRANCH (sirf student ke liye) -->
+      <div class="form-group" id="branchGroup">
+        <label><i class="fas fa-graduation-cap"></i> Branch</label>
+        <select id="branch">
+          <option value="">-- Select Branch --</option>
+          <option>CSE</option>
+          <option>IT</option>
+          <option>ECE</option>
+          <option>EE</option>
+          <option>ME</option>
+          <option>CE</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <!-- ROW 3 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-lock"></i> Password</label>
+          <div class="password-wrap">
+            <input type="password" id="password" placeholder="Min 6 characters" />
+            <i class="fas fa-eye" id="eye1" onclick="toggleRegPassword('password', 'eye1')"></i>
+          </div>
+          <div class="strength"><div id="strengthBar"></div></div>
+          <p id="strengthText" class="strength-text"></p>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-lock"></i> Confirm Password</label>
+          <div class="password-wrap">
+            <input type="password" id="confirmPassword" placeholder="Re-enter password" />
+            <i class="fas fa-eye" id="eye2" onclick="toggleRegPassword('confirmPassword', 'eye2')"></i>
+          </div>
+        </div>
+      </div>
+
+      <label class="terms">
+        <input type="checkbox" id="terms" />
+        I agree to the library rules and terms
+      </label>
+
+      <button type="button" class="btn-submit" onclick="handleRegister()">
+        <i class="fas fa-user-plus"></i> Register
+      </button>
+
+      <p id="error-msg" class="error-msg"></p>
+      <p id="success-msg" class="success-msg"></p>
+
+      <p class="register-link">
+        Already have an account? <a href="login.html">Login Here</a>
+      </p>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 LDRMS — GLA University, Mathura</p>
+    </div>
+  </footer>
+
+  <script src="js/register.js"></script>
+
+</body>
+</html>
