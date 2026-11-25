@@ -14,6 +14,12 @@
   --text:    #2C3E50;
   --gray:    #7F8C8D;
   --shadow:  0 4px 20px rgba(0,0,0,0.1);
+  --nav-h:   70px;            /* navbar ki fixed height */
+}
+
+/* Anchor links (Features / About) navbar ke neeche na chhupein */
+html {
+  scroll-padding-top: var(--nav-h);
 }
 
 body {
@@ -27,7 +33,8 @@ body {
   justify-content: space-between;
   align-items: center;
   background: var(--primary);
-  padding: 14px 40px;
+  height: var(--nav-h);
+  padding: 0 40px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -73,15 +80,43 @@ body {
 .btn-login:hover { background: #e67e22 !important; }
 .btn-login.active { background: #e67e22 !important; }
 
+/* ─── HOME PAGE: HAR SECTION FULLSCREEN ───
+   Navbar ke neeche poori screen ek section ki hogi.
+   Agla section tabhi dikhega jab user agla scroll karega. */
+.hero,
+.features,
+.roles {
+  min-height: calc(100vh - var(--nav-h));   /* purane browsers ke liye */
+  min-height: calc(100dvh - var(--nav-h));  /* mobile browsers ke liye */
+  scroll-padding-top: var(--nav-h);
+}
+
+/* Scroll karne par section screen ke top par "snap" hoga
+   (sirf bade screen par, aur sirf home page par jahan .hero hai) */
+@media (min-width: 769px) and (min-height: 600px) {
+  html:has(.hero) {
+    scroll-snap-type: y mandatory;
+  }
+
+  .hero,
+  .features,
+  .roles {
+    scroll-snap-align: start;
+  }
+
+  .footer {
+    scroll-snap-align: end;
+  }
+}
+
 /* ─── HERO ─── */
 .hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 60px;
+  padding: 40px 60px;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: var(--white);
-  min-height: 88vh;
 }
 
 .hero-content { max-width: 600px; }
@@ -140,7 +175,10 @@ body {
 
 /* ─── FEATURES ─── */
 .features {
-  padding: 70px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;      /* content section ke beech mein */
+  padding: 40px 60px;
   background: var(--white);
   text-align: center;
 }
@@ -196,7 +234,10 @@ body {
 
 /* ─── ROLES ─── */
 .roles {
-  padding: 70px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;      /* content section ke beech mein */
+  padding: 40px 60px;
   background: var(--light);
   text-align: center;
 }
@@ -457,15 +498,22 @@ body {
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
+    justify-content: center;
     padding: 40px 20px;
     text-align: center;
   }
   .hero-image { display: none; }
   .hero-content h1 { font-size: 28px; }
+  .hero-buttons { justify-content: center; }
   .features-grid, .roles-grid { grid-template-columns: 1fr; }
   .features, .roles { padding: 40px 20px; }
+
+  /* Chhote screen par cards ki wajah se section lamba ho sakta hai,
+     isliye fullscreen rule hata diya */
+  .features, .roles { min-height: auto; }
+
   .login-section { flex-direction: column; gap: 20px; }
   .login-left { display: none; }
   .login-box { width: 100%; }
-  .navbar { padding: 12px 20px; }
+  .navbar { padding: 0 20px; }
 }
